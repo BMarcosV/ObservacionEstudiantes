@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{title}}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/footer/footer.css">
+    <link rel="stylesheet" href="/css/footer/footer.css">
     {{{style}}}
   </head>
   <body>
@@ -19,13 +19,13 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Agregar anotación</a>
+          <a class="nav-link active" aria-current="page" href="http://localhost:8085/observacion">Agregar anotación</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Privace</a>
+          <a class="nav-link" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="#"></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,25 +41,21 @@
   </div>
 </nav>
 <div class="alert alert-primary" role="alert">
-  Bienvenido {USUARIO}
+  Bienvenido {{this.NOMBRE_USUARIO}}
 </div>
 
       {{{body}}}
 
     <footer class="footer">
-        <h2>Tu Empresa</h2>
+        <h2>Buscar Alumno Lec</h2>
         <p>&copy; 2025 Todos los derechos reservados.</p>
         <ul class="footer-links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Sobre Nosotros</a></li>
-            <li><a href="#">Servicios</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="http://localhost:8085/alumno">Inicio</a></li>
+            <li><a href="https://www.instagram.com/liceo_polivalente_experimental/?hl=es">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@lectv5450">Youtube</a></li>
+            <li><a href="https://liceoexperimental.andaliensur.cl/">Pagina del Liceo</a></li>
+
         </ul>
-        <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </div>
     </footer>
     </div>
 
