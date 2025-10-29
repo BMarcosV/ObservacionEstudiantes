@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const formEditar = document.getElementById('formEditarEstudiante');
     const editarModal = new bootstrap.Modal(document.getElementById('editarModal'));
 
-    // Función para validar RUT chileno
+
     function validarRUT(rut) {
-        // Remover puntos y espacios
+    
         rut = rut.replace(/\./g, '').replace(/-/g, '').trim();
 
         if (rut.length < 8 || rut.length > 9) return false;
@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const cuerpo = rut.slice(0, -1);
         const dv = rut.slice(-1).toLowerCase();
 
-        // Verificar que el cuerpo sea numérico
+      
         if (!/^\d+$/.test(cuerpo)) return false;
 
-        // Calcular dígito verificador
+     
         let suma = 0;
         let multiplicador = 2;
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return dv === dvCalculado;
     }
 
-    // Crear estudiante
+
     formCrear.addEventListener('submit', async function(e) {
         e.preventDefault();
         const nombre = document.getElementById('nombre').value.trim();
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const rut = document.getElementById('rut').value.trim();
         const curso = document.getElementById('curso').value;
 
-        // Validar RUT
+   
         if (!validarRUT(rut)) {
             alert('RUT inválido. Por favor ingrese un RUT válido.');
             return;
@@ -58,16 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     apellido2,
                     rut,
                     curso,
-                    id_apoderado: 1 // Asumiendo un apoderado por defecto
+                    id_apoderado: 1 
                 })
             });
 
             const result = await response.json();
             if (result.success) {
                 alert('Estudiante creado exitosamente');
-                // Limpiar formulario
+        
                 formCrear.reset();
-                location.reload(); // Recargar la página para mostrar el nuevo estudiante
+                location.reload(); 
             } else {
                 alert('Error al crear estudiante: ' + result.message);
             }
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Editar estudiante - abrir modal
+   
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('btn-editar')) {
             const id = e.target.getAttribute('data-id');
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editApellido1').value = cells[1].textContent.trim();
             document.getElementById('editRut').value = cells[2].textContent.trim();
 
-            // Para el curso, necesitamos encontrar el ID correspondiente al nombre
+           
             const cursoNombre = cells[3].textContent.trim();
             const selectCurso = document.getElementById('editCurso');
             let cursoEncontrado = false;
@@ -101,14 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Si no se encontró el curso exacto, intentar buscar por ID_CURSO desde el data attribute
+           
             if (!cursoEncontrado) {
                 const cursoId = row.getAttribute('data-curso-id');
                 if (cursoId) {
                     selectCurso.value = cursoId;
                 } else {
-                    // Si no hay data-curso-id, buscar por el nombre del curso en la base de datos
-                    // Esto es un fallback, pero debería funcionar con los cambios en el backend
+                    
                     console.log('No se pudo encontrar el curso para edición:', cursoNombre);
                 }
             }
@@ -117,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Actualizar estudiante
+   
     formEditar.addEventListener('submit', async function(e) {
         e.preventDefault();
         const id = document.getElementById('editId').value;
@@ -127,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const rut = document.getElementById('editRut').value.trim();
         const curso = document.getElementById('editCurso').value;
 
-        // Validar RUT si fue modificado
+      
         if (!validarRUT(rut)) {
             alert('RUT inválido. Por favor ingrese un RUT válido.');
             return;
@@ -152,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (result.success) {
                 alert('Estudiante actualizado exitosamente');
                 editarModal.hide();
-                location.reload(); // Recargar la página para mostrar los cambios
+                location.reload(); 
             } else {
                 alert('Error al actualizar estudiante: ' + result.message);
             }
@@ -162,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Eliminar estudiante
+ 
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('btn-eliminar')) {
             const id = e.target.getAttribute('data-id');
@@ -181,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
             if (result.success) {
                 alert('Estudiante eliminado exitosamente');
-                location.reload(); // Recargar la página para actualizar la lista
+                location.reload(); 
             } else {
                 alert('Error al eliminar estudiante: ' + result.message);
             }

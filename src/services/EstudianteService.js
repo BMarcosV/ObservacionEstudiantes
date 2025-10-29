@@ -14,7 +14,7 @@ export default class EstudianteService{
     }
 
     async crearEstudiante(datos){
-        // Obtener el próximo ID secuencial disponible
+      
         const estudiantes = await this.knex('estudiante').select('ID_ESTUDIANTE').orderBy('ID_ESTUDIANTE')
         let proximoId = 1
         for (const estudiante of estudiantes) {
@@ -25,12 +25,12 @@ export default class EstudianteService{
             }
         }
 
-        // Asignar el ID calculado
+    
         datos.ID_ESTUDIANTE = proximoId
 
-        // Insertar con ID específico
+      
         await this.knex('estudiante').insert(datos)
-        return [datos] // Retornar el objeto insertado para mantener compatibilidad
+        return [datos] 
     }
 
     async actualizarEstudiante(id, datos){
@@ -59,7 +59,7 @@ export default class EstudianteService{
     }
 
     async reasignarIdsEstudiantes(){
-        // Obtener todos los estudiantes ordenados por ID actual
+       
         const estudiantes = await this.knex('estudiante').select('*').orderBy('ID_ESTUDIANTE')
 
         // Reasignar IDs secuenciales empezando desde 1
@@ -71,8 +71,6 @@ export default class EstudianteService{
             nuevoId++
         }
 
-        // Resetear el auto-increment si es necesario (opcional, depende de la base de datos)
-        // await this.knex.raw('ALTER TABLE estudiante AUTO_INCREMENT = ?', [nuevoId])
+        
     }
-
 }

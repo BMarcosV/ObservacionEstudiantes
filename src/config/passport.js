@@ -39,9 +39,9 @@ const initializePassport = () => {
         secretOrKey:'55a1d5f0e8bc2c0f4e5f67e83e14ab981d79fcfeb9d53ec3eed11252ddfbf10c'
     },async(jwt_payload,done) => {
         try {
-            //Obtengo el id del cliente desde la cookie
+
             const {ID_USUARIO} = jwt_payload.user
-            //Por si el usuario ha sufrido cambios
+     
             const user = await Sesion.buscarUsuarioPorId(ID_USUARIO)
             return done(null,user)
         } catch (err) {

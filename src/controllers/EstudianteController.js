@@ -21,7 +21,7 @@ const crear = async(req,res) => {
     try {
         const { nombre, apellido1, apellido2, rut, curso, id_apoderado } = req.body
 
-        // Verificar si el RUT ya existe
+  
         const rutExistente = await estudiante.verificarRutExistente(rut)
         if (rutExistente) {
             return res.status(400).json({ success: false, message: 'El RUT ya está registrado en el sistema' })
@@ -50,7 +50,7 @@ const actualizar = async(req,res) => {
         const { id } = req.params
         const { nombre, apellido1, apellido2, rut, curso } = req.body
 
-        // Verificar si el RUT ya existe en otro estudiante (excluyendo el actual)
+    
         const rutExistente = await estudiante.verificarRutExistente(rut, id)
         if (rutExistente) {
             return res.status(400).json({ success: false, message: 'El RUT ya está registrado para otro estudiante' })
@@ -78,7 +78,7 @@ const eliminar = async(req,res) => {
         const { id } = req.params
         await estudiante.eliminarEstudiante(id)
 
-        // Reasignar IDs secuenciales después de eliminar
+
         await estudiante.reasignarIdsEstudiantes()
 
         res.json({ success: true, message: 'Estudiante eliminado exitosamente' })
