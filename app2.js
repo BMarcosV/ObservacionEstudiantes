@@ -2,6 +2,7 @@ import express from 'express'
 import SesionRouter from './src/routes/SesionRouter.js'
 import BuscarAlumnoRouter from './src/routes/BuscarAlumnoRouter.js'
 import ObservacionRouter from './src/routes/ObservacionRouter.js'
+import EstudianteRouter from './src/routes/EstudianteRouter.js' 
 import handlebars from 'express-handlebars'
 import __dirname from './src/utils.js'
 import session from 'express-session'
@@ -40,6 +41,7 @@ app.set('view engine','handlebars')
 
 app.use('/alumno', BuscarAlumnoRouter)
 app.use('/observacion', ObservacionRouter)
+app.use('/estudiantes',EstudianteRouter)
 app.use('/',SesionRouter)
 
 app.listen(8085,() => {console.log(`Listen on port 8085`)})
