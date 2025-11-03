@@ -41,6 +41,7 @@ app.set('view engine','handlebars')
 
 
 app.use('/observacion', ObservacionRouter)
+app.use('/estudiantes',EstudianteRouter)
 app.use('/',SesionRouter)
 
 app.listen(8085,() => {console.log(`Listen on port 8085`)})
