@@ -1,7 +1,5 @@
 import express from 'express'
 import SesionRouter from './src/routes/SesionRouter.js'
-import BuscarAlumnoRouter from './src/routes/BuscarAlumnoRouter.js'
-import ObservacionRouter from './src/routes/ObservacionRouter.js'
 import EstudianteRouter from './src/routes/EstudianteRouter.js' 
 import handlebars from 'express-handlebars'
 import __dirname from './src/utils.js'
@@ -30,17 +28,11 @@ app.use(express.json())
 
 app.use(express.urlencoded({extended:true}))
 
-app.engine('handlebars',handlebars.engine({
-    helpers: {
-        eq: (a, b) => a === b
-    }
-}))
+app.engine('handlebars',handlebars.engine())
 app.set('views',`${__dirname}/views`)
 app.set('view engine','handlebars')
 
-
-
-app.use('/observacion', ObservacionRouter)
 app.use('/',SesionRouter)
+app.use('/estudiantes',EstudianteRouter)
 
 app.listen(8085,() => {console.log(`Listen on port 8085`)})
