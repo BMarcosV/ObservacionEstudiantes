@@ -2,22 +2,6 @@ import ObservacionService from '../services/ObservacionService.js'
 import { generateToken,verifyToken } from '../utils.js'
 const observacion = new ObservacionService()
 
-const index = async(req,res) => {
-    try {
-        const obs = await observacion.obtenerTodasLasObservaciones()
-        console.log(obs)
-
-        return res.render('observaciones/viewMostrarObservaciones',{
-            layout: 'main',
-            title: 'Listado de Observaciones',
-            obs
-        })
-    } catch (error) {
-        console.log(error)
-        res.status(500).send('Error al obtener observaciones')
-    }
-}
-
 const crearForm = async(req, res) => {
     try {
         const estudiantes = await observacion.obtenerEstudiantes()
@@ -87,4 +71,4 @@ const eliminar = async(req, res) => {
     }
 }
 
-export { index, crearForm, crear, editarForm, editar, eliminar }
+export { crearForm, crear, editarForm, editar, eliminar }
