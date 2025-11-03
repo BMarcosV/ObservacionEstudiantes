@@ -4,7 +4,7 @@ import argon2 from 'argon2'
 const router = Router()
 import {index,nopermitido,login} from '../controllers/SesionController.js' 
 
-router.get('/', index)
+router.get('/',index)
 
 router.get('/nopermitido',nopermitido)
 

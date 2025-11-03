@@ -1,9 +1,5 @@
 import BuscarAlumnoService from '../services/BuscarAlumnoService.js'
 import { generateToken,verifyToken } from '../utils.js'
-
-import ObservacionService from '../services/ObservacionService.js'
-const observacionS = new ObservacionService()
-
 const buscar = new BuscarAlumnoService()
 
 const index = async(req,res) => {
@@ -21,8 +17,6 @@ const index = async(req,res) => {
     }
 }
 
-
-// alumno
 const viewBuscarAlumno = async(req,res) => {
     try {
         res.render('alumno/viewBuscarId',{
@@ -33,27 +27,4 @@ const viewBuscarAlumno = async(req,res) => {
     }
 }
 
-
-// observacion
-const observacion = async(req,res) => {
-    try {
-
-        const obs = await observacionS.obtenerTodasLasObservaciones()
-
-        res.render('observaciones/viewMostrarObservaciones',{
-            layout: 'main',
-            title: 'Listado de Observaciones',
-            obs
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-
-export {
-    index,
-    viewBuscarAlumno,
-    observacion
-}
+export {index,viewBuscarAlumno}

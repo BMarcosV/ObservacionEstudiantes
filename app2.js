@@ -39,7 +39,7 @@ app.set('views',`${__dirname}/views`)
 app.set('view engine','handlebars')
 
 
-
+app.use('/alumno', BuscarAlumnoRouter)
 app.use('/observacion', ObservacionRouter)
 app.use('/estudiantes',EstudianteRouter)
 app.use('/',SesionRouter)

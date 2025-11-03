@@ -1,17 +1,11 @@
 import {Router} from 'express'
 import passport from 'passport';
 const router = Router()
-import {
-    index,
-    viewBuscarAlumno,
-    observacion
-} from '../controllers/BuscarAlumnoController.js'
-
-const auth = passport.authenticate('jwt',{session:false})
+import {index,viewBuscarAlumno} from '../controllers/BuscarAlumnoController.js'
 
 
-router.post('/',auth, index)
-    router.get('/observacion',auth, observacion)
-    router.get('/alumno',auth, viewBuscarAlumno)
+router.post('/',passport.authenticate('jwt',{session:false}),index)
+
+router.get('/',passport.authenticate('jwt',{session:false}),viewBuscarAlumno)
 
 export default router
