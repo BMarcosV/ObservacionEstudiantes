@@ -9,7 +9,7 @@ const index = async(req,res) => {
             title: 'Iniciar Sesion'
         })
     } catch (error) {
-        
+
     }
 }
 
