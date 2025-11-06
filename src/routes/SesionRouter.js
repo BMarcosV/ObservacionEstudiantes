@@ -2,7 +2,7 @@ import {Router} from 'express'
 import passport from 'passport';
 import argon2 from 'argon2'
 const router = Router()
-import {index,nopermitido,login} from '../controllers/SesionController.js' 
+import {index,nopermitido,login,logout} from '../controllers/SesionController.js'
 
 router.get('/',index)
 
@@ -19,5 +19,7 @@ router.post('/login',passport.authenticate('local',{
         failureRedirect:'/nopermitido'
     }
 ))
+
+router.get('/logout',logout)
 
 export default router

@@ -4,6 +4,9 @@ const Sesion = new SesionService()
 
 const index = async(req,res) => {
     try {
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
         return res.render('sesion/index',{
             layout: 'sesion',
             title: 'Iniciar Sesion'
@@ -33,5 +36,20 @@ const login = async(req,res) => {
     }).send({status:true,message:'ok'})
 }
 
+const logout = async(req,res) => {
+    try {
+        req.logout((err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send({status:false,message:'Error al cerrar sesión'})
+            }
+            res.clearCookie('cookieToken')
+            res.redirect('/')
+        })
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send({status:false,message:'Error interno'})
+    }
+}
 
-export {index,login,nopermitido}
+export {index,login,nopermitido,logout}
