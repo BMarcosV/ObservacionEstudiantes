@@ -184,6 +184,12 @@ h1 {
     width: 40px !important;
 }
 
+.success-message {
+    color: #51cf66;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
 @keyframes wobble {
     0% {
         transform: scale(1.025);
