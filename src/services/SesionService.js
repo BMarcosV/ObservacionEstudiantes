@@ -40,4 +40,19 @@ export default class SesionService{
     async actualizarContrasenaPorCorreo(correo, nuevaContrasena){
         return this.knex('usuario').where({CORREO_USUARIO: correo}).update({PASSWORD_USUARIO: nuevaContrasena})
     }
+
+    async createUser(userData){
+        const { nombre, apellido1, apellido2, correo, rut, password, preguntaSecreta, respuestaSecreta, tipo } = userData
+        return this.knex('usuario').insert({
+            NOMBRE_USUARIO: nombre,
+            APELLIDO1_USUARIO: apellido1,
+            APELLIDO2_USUARIO: apellido2,
+            CORREO_USUARIO: correo,
+            RUT_USUARIO: rut,
+            PASSWORD_USUARIO: password,
+            PREGUNTA_SECRETA: preguntaSecreta,
+            RESPUESTA_SECRETA: respuestaSecreta,
+            TIPO_USUARIO: tipo
+        })
+    }
 }

@@ -1,0 +1,28 @@
+<div class="login-container">
+    {{#if message}}
+    <h2 class="error-message">{{message}}</h2>
+    {{else}}
+    <h2 class="message"></h2>
+    {{/if}}
+    <div class="circle circle-one"></div>
+    <div class="form-container">
+        <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+        <h1 class="opacity">REGISTER</h1>
+        <form class="register" action="/register" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellido1" placeholder="Apellido Paterno" required>
+            <input type="text" name="apellido2" placeholder="Apellido Materno" required>
+            <input type="email" name="correo" placeholder="Correo" required>
+            <input type="text" name="rut" placeholder="RUT" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="text" name="preguntaSecreta" placeholder="Pregunta Secreta" required>
+            <input type="text" name="respuestaSecreta" placeholder="Respuesta Secreta" required>
+            <button class="opacity" type="submit">REGISTER</button>
+        </form>
+        <div class="register-forget opacity">
+            <a href="/">LOGIN</a>
+        </div>
+    </div>
+    <div class="circle circle-two"></div>
+</div>
+<div class="theme-btn-container"></div>

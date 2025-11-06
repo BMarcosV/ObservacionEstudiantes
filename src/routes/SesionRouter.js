@@ -4,9 +4,9 @@ import argon2 from 'argon2'
 import { generateToken } from '../utils.js'
 const router = Router()
 
-import {index,nopermitido,login,logout} from '../controllers/SesionController.js'
 
-import {index,nopermitido,login, cambiarContrasenaForm, cambiarContrasena, cambiarContrasenaNueva, olvideContrasenaForm, olvideContrasena, responderPregunta, nuevaContrasena} from '../controllers/SesionController.js'
+
+import {index,nopermitido,login, cambiarContrasenaForm, cambiarContrasena, cambiarContrasenaNueva, olvideContrasenaForm, olvideContrasena, responderPregunta, nuevaContrasena, logout, registerForm, register} from '../controllers/SesionController.js'
 
 router.get('/',index)
 
@@ -59,5 +59,7 @@ router.post('/olvide-contrasena', olvideContrasena)
 router.post('/responder-pregunta', responderPregunta)
 router.post('/nueva-contrasena', nuevaContrasena)
 
+router.get('/register', registerForm)
+router.post('/register', register)
 
 export default router

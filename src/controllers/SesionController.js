@@ -5,13 +5,11 @@ const Sesion = new SesionService()
 
 const index = async(req,res) => {
     try {
-<<<<<<< HEAD
         res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
         res.set('Pragma', 'no-cache');
         res.set('Expires', '0');
-=======
         const message = req.query.message || ''
->>>>>>> 0556be61ab8aeca96356a5c1644978398573bed2
+
         return res.render('sesion/index',{
             layout: 'sesion',
             title: 'Iniciar Sesion',
@@ -42,7 +40,7 @@ const login = async(req,res) => {
     }).send({status:true,message:'ok'})
 }
 
-<<<<<<< HEAD
+
 const logout = async(req,res) => {
     try {
         req.logout((err) => {
@@ -59,8 +57,8 @@ const logout = async(req,res) => {
     }
 }
 
-export {index,login,nopermitido,logout}
-=======
+
+
 const cambiarContrasenaForm = async(req, res) => {
     try {
         res.render('sesion/cambiarContrasena', {
@@ -197,5 +195,55 @@ const nuevaContrasena = async(req, res) => {
     }
 }
 
-export {index,login,nopermitido, cambiarContrasenaForm, cambiarContrasena, cambiarContrasenaNueva, olvideContrasenaForm, olvideContrasena, responderPregunta, nuevaContrasena}
->>>>>>> 0556be61ab8aeca96356a5c1644978398573bed2
+const registerForm = async(req, res) => {
+    try {
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+        const message = req.query.message || ''
+
+        return res.render('sesion/register', {
+            layout: 'sesion',
+            title: 'Registro',
+            message: message
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+const register = async(req, res) => {
+    try {
+        const { nombre, apellido1, apellido2, correo, rut, password, preguntaSecreta, respuestaSecreta } = req.body
+
+        // Verificar si el usuario ya existe
+        const existingUser = await Sesion.buscarUsuarioPorCorreo(correo)
+        if (existingUser) {
+            return res.redirect('/register?message=Usuario ya existe')
+        }
+
+        // Hashear la contraseña
+        const hashedPassword = await argon2.hash(password)
+
+        // Crear el usuario
+        await Sesion.createUser({
+            nombre,
+            apellido1,
+            apellido2,
+            correo,
+            rut,
+            password: hashedPassword,
+            preguntaSecreta,
+            respuestaSecreta,
+            tipo: 'usuario' // Tipo por defecto
+        })
+
+        res.redirect('/?message=Usuario registrado exitosamente')
+    } catch (error) {
+        console.log(error)
+        res.status(500).send('Error al registrar usuario')
+    }
+}
+
+export {index,login,nopermitido, cambiarContrasenaForm, cambiarContrasena, cambiarContrasenaNueva, olvideContrasenaForm, olvideContrasena, responderPregunta, nuevaContrasena, logout, registerForm, register}
+
