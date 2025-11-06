@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <h1>Cambiar Contraseña</h1>
+    <form action="/cambiar-contrasena/nueva" method="POST">
+        <div class="mb-3">
+            <label for="nuevaContrasena" class="form-label">Nueva Contraseña</label>
+            <input type="password" class="form-control" id="nuevaContrasena" name="nuevaContrasena" required>
+        </div>
+        <div class="mb-3">
+            <label for="confirmarContrasena" class="form-label">Confirmar Nueva Contraseña</label>
+            <input type="password" class="form-control" id="confirmarContrasena" name="confirmarContrasena" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+        <a href="/observacion" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

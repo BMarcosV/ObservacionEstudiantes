@@ -2,8 +2,8 @@
 <div class="container mt-5">
     <h1>{{title}}</h1>
     <a href="/observacion/crear" class="btn btn-success mb-3">Crear Nueva Observación</a>
-    <table class="table table-hover">
-        <thead>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">ID_ESTUDIANTE</th>
@@ -17,13 +17,13 @@
             {{#each obs}}
             <tr>
                 <th scope="row">{{this.ID_OBSERVACIONES}}</th>
-                <th scope="row">{{this.ID_ESTUDIANTE}}</th>
-                <th scope="row">{{this.ID_USUARIO}}</th>
-                <th scope="row">{{this.OBSERVACION}}</th>
-                <td><a class="btn btn-primary" href="/observacion/editar/{{this.ID_OBSERVACIONES}}" role="button">Editar</a></td>
+                <td>{{this.ID_ESTUDIANTE}}</td>
+                <td>{{this.ID_USUARIO}}</td>
+                <td>{{this.OBSERVACION}}</td>
+                <td><a class="btn btn-primary btn-sm" href="/observacion/editar/{{this.ID_OBSERVACIONES}}" role="button">Editar</a></td>
                 <td>
                     <form action="/observacion/eliminar/{{this.ID_OBSERVACIONES}}" method="POST" style="display:inline;">
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta observación?')">Eliminar</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta observación?')">Eliminar</button>
                     </form>
                 </td>
             </tr>
