@@ -1,0 +1,109 @@
+<div class="fade-in-up">
+  <h2>Lista de Estudiantes</h2>
+
+  <div class="mb-4">
+    <h3>Agregar Nuevo Estudiante</h3>
+    <form id="formCrearEstudiante">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <input type="text" class="form-control" id="nombre" placeholder="Nombre" autocomplete="off" required>
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" id="apellido1" placeholder="Apellido Paterno" autocomplete="off" required>
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" id="apellido2" placeholder="Apellido Materno" autocomplete="off" required>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="rut" placeholder="RUT (ej: 12345678-9)" pattern="^\d{7,8}-[0-9kK]$" title="Formato: 12345678-9 o 1234567-K" autocomplete="off" required>
+        </div>
+        <div class="col-md-2">
+          <select class="form-control" id="curso" required>
+            <option value="">Seleccionar Curso</option>
+            {{#each cursos}}
+            <option value="{{this.ID_CURSO}}">{{this.NOMBRE_CURSO}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="fade-in-up">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Rut</th>
+        <th scope="col">Curso</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="estudiantesTableBody">
+   {{#each est}}
+      <tr data-id="{{this.ID_ESTUDIANTE}}" data-curso-id="{{this.ID_CURSO}}">
+        <th scope="row">{{this.ID_ESTUDIANTE}}</th>
+        <td>{{this.NOMBRE_ESTUDIANTE}}</td>
+        <td>{{this.APELLIDO1_ESTUDIANTE}}</td>
+        <td>{{this.RUT_ESTUDIANTE}}</td>
+        <td>{{this.CURSO}}</td>
+        <td>
+          <button class="btn btn-sm btn-warning btn-editar" data-id="{{this.ID_ESTUDIANTE}}">Editar</button>
+          <button class="btn btn-sm btn-danger btn-eliminar" data-id="{{this.ID_ESTUDIANTE}}">Eliminar</button>
+        </td>
+      </tr>
+  {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarModalLabel">Editar Estudiante</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formEditarEstudiante">
+          <input type="hidden" id="editId">
+          <div class="mb-3">
+            <label for="editNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="editNombre" autocomplete="off" required>
+          </div>
+          <div class="mb-3">
+            <label for="editApellido1" class="form-label">Apellido Paterno</label>
+            <input type="text" class="form-control" id="editApellido1" autocomplete="off" required>
+          </div>
+          <div class="mb-3">
+            <label for="editApellido2" class="form-label">Apellido Materno</label>
+            <input type="text" class="form-control" id="editApellido2" autocomplete="off" required>
+          </div>
+          <div class="mb-3">
+            <label for="editRut" class="form-label">RUT</label>
+            <input type="text" class="form-control" id="editRut" pattern="^\d{7,8}-[0-9kK]$" title="Formato: 12345678-9 o 1234567-K" autocomplete="off" required>
+          </div>
+          <div class="mb-3">
+            <label for="editCurso" class="form-label">Curso</label>
+            <select class="form-control" id="editCurso" required>
+              <option value="">Seleccionar Curso</option>
+              {{#each cursos}}
+              <option value="{{this.ID_CURSO}}">{{this.NOMBRE_CURSO}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/alumno/crudEstudiantes.js"></script>
